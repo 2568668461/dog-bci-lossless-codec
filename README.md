@@ -1,0 +1,56 @@
+# dog-bci-lossless-codec
+
+针对 Intan RHD2164（128 通道 × 30 kS/s × 16 bit）无线 BCI 链路的** 16-bit 无损神经信号压缩器**。基于 Neuralink 2024 压缩挑战赛参赛代码改造而成。
+
+## 代码来源与授权
+
+- **上游**：GitHub [`hxrdxkxvxd/neuralink-codec`](https://github.com/hxrdxkxvxd/neuralink-codec)（Neuralink 压缩挑战赛提交，官方评测无损 3.4575×，本地复现一致）。原版完整保留在 [`upstream/`](upstream/) 目录。
+- **⚠️ 上游无 LICENSE 文件**。本仓库为私有研究用途；如需公开，必须先处理上游代码的授权问题。
+- 改造版相对原版仅改动 4 处（见下表），算法主体未动。
+
+## 为何必须改造
+
+上游在挑战赛数据上逐字节无损，但官方数据是 **10-bit 信号放在 ×64 格点上**。对满 16-bit 的 RHD2164 原始 ADC 计数，原版是**有损**的：
+
+| 位置 | 原版 | 问题 | 改造版（encode16w / decode16w） |
+|---|---|---|---|
+| `encode.c` L217 | `quant(v) = floor(v/64)` | 丢弃低 6 bit，误差 ±37 LSB（大于信号噪声 σ≈25 LSB） | 恒等映射 |
+| `decode.c` L152 | `dequant(q) = round(q×64.0616+31.03)` | 拟合直线，仅对格点数据可逆 | 恒等映射 |
+| 符号表宏 | `MAX_VAL 256`（±127） | 16-bit 残差超限走 escape，CR 崩到 ~1.1× | `MAX_VAL 1024`（±511） |
+
+`encode16.c / decode16.c` 为"仅去量化"中间版本（符号表未扩），保留作对照。
+
+## 真实数据实测结果（2026-09-06）
+
+数据：Horváth et al. 2021（Sci. Data 8:180），麻醉大鼠新皮层在体记录，Intan RHD-2000 采集（RHD2164 类，128ch × 20 kS/s × 16-bit），CC BY 4.0。
+
+| 指标 | 结果 |
+|---|---|
+| 无损性 | **128/128 通道逐 bit 无损（MaxErr = 0）**，两段独立 60 s 时段验证 |
+| 压缩率 | **2.37–2.40×**（6.72–6.74 bit/样本） |
+| 折算 128ch × 30 kHz | **25.8–25.9 Mbps**（原始 61.44 Mbps），落在 17–31 Mbps 无损窗口，可接 Wi-Fi 6 |
+| 原版对照 | 同数据 MaxErr 33–35 LSB（有损）；Intan 官方 64ch 样本上 5/64 通道码流失步 |
+| 速度 | 单线程 ≈6.5 M 样本/s（gcc -O3），128ch×30kHz = 3.84 M 样本/s，单核足够 |
+
+完整报告（含数据来源、方法、局限）：[`test/0906_真实Intan数据压缩测试报告.md`](test/0906_真实Intan数据压缩测试报告.md)
+
+## 算法结构
+
+```
+样本 → 8 阶 SSLMS 自适应线性预测（残差白化）→ 4 上下文自适应概率模型 → Range 编码
+```
+
+单通道流式（128 通道 = 128 个独立实例），适合 FPGA Hub 分时复用。
+
+## 编译与使用
+
+```bash
+gcc -O3 -o encode16w encode16w.c -lm -std=c99
+gcc -O3 -o decode16w decode16w.c -lm -std=c99
+
+# 单通道 16-bit mono wav（30 kS/s）进，压缩码流出
+./encode16w input.wav output.bw
+./decode16w output.bw reconstructed.wav
+```
+
+上游原版构建/评测见 [`upstream/`](upstream/)（`build.sh` / `eval.sh`，针对挑战赛数据格式）。

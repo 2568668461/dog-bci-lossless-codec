@@ -1,0 +1,5 @@
+*.exe
+*.o
+*.bw
+*.wav
+__pycache__/
