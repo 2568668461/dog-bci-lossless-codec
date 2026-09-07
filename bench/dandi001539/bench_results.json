@@ -1,0 +1,128 @@
+[
+ {
+  "method": "熵锚点: 0阶熵",
+  "CR": 1.396,
+  "Mbps": 0.825,
+  "lossless": null,
+  "note": "11.46 bits/样本"
+ },
+ {
+  "method": "熵锚点: 1阶差分熵",
+  "CR": 1.721,
+  "Mbps": 0.669,
+  "lossless": null,
+  "note": "9.30 bits/样本"
+ },
+ {
+  "method": "熵锚点: 2阶差分熵",
+  "CR": 1.705,
+  "Mbps": 0.676,
+  "lossless": null,
+  "note": "9.38 bits/样本"
+ },
+ {
+  "method": "DEFLATE/zlib L9 (raw)",
+  "CR": 1.241,
+  "Mbps": 0.928,
+  "lossless": true,
+  "note": ""
+ },
+ {
+  "method": "delta16 + zlib L9",
+  "CR": 1.38,
+  "Mbps": 0.835,
+  "lossless": true,
+  "note": ""
+ },
+ {
+  "method": "hi8 + dlo8 + zlib L9",
+  "CR": 1.59,
+  "Mbps": 0.725,
+  "lossless": true,
+  "note": ""
+ },
+ {
+  "method": "zstd L3",
+  "CR": 1.343,
+  "Mbps": 0.858,
+  "lossless": true,
+  "note": ""
+ },
+ {
+  "method": "zstd L19",
+  "CR": 1.491,
+  "Mbps": 0.773,
+  "lossless": true,
+  "note": ""
+ },
+ {
+  "method": "delta16 + zstd L19",
+  "CR": 1.6,
+  "Mbps": 0.72,
+  "lossless": true,
+  "note": ""
+ },
+ {
+  "method": "FLAC (48ch mono, L5)",
+  "CR": 1.761,
+  "Mbps": 0.654,
+  "lossless": true,
+  "note": ""
+ },
+ {
+  "method": "JPEG-LS NEAR=0 (无损)",
+  "CR": 1.71,
+  "Mbps": 0.674,
+  "lossless": false,
+  "note": ""
+ },
+ {
+  "method": "JPEG-LS NEAR=1 (近无损)",
+  "CR": 2.064,
+  "Mbps": 0.558,
+  "lossless": null,
+  "note": "err<=1µV"
+ },
+ {
+  "method": "JPEG-LS NEAR=2 (近无损)",
+  "CR": 2.271,
+  "Mbps": 0.507,
+  "lossless": null,
+  "note": "err<=2µV"
+ },
+ {
+  "method": "JPEG-LS NEAR=4 (近无损)",
+  "CR": 2.581,
+  "Mbps": 0.446,
+  "lossless": null,
+  "note": "err<=4µV"
+ },
+ {
+  "method": "WavPack 5.9 -hhx",
+  "CR": 1.604,
+  "Mbps": 0.718,
+  "lossless": true,
+  "note": ""
+ },
+ {
+  "method": "drice (自研, 无损)",
+  "CR": 1.729,
+  "Mbps": 0.666,
+  "lossless": true,
+  "note": ""
+ },
+ {
+  "method": "drice_nl NEAR=2",
+  "CR": 1.73,
+  "Mbps": 0.666,
+  "lossless": null,
+  "note": "worst|err|=2"
+ },
+ {
+  "method": "drice_nl NEAR=4",
+  "CR": 1.734,
+  "Mbps": 0.665,
+  "lossless": null,
+  "note": "worst|err|=4"
+ }
+]

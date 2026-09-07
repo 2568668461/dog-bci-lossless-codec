@@ -1,0 +1,156 @@
+[
+ {
+  "method": "lzma/xz L9 (raw)",
+  "CR": 1.663,
+  "Mbps": 0.693,
+  "lossless": null,
+  "note": ""
+ },
+ {
+  "method": "brotli Q9 (raw)",
+  "CR": 1.426,
+  "Mbps": 0.808,
+  "lossless": null,
+  "note": ""
+ },
+ {
+  "method": "delta16 + lzma L9",
+  "CR": 1.784,
+  "Mbps": 0.646,
+  "lossless": true,
+  "note": ""
+ },
+ {
+  "method": "delta16 + brotli Q9",
+  "CR": 1.634,
+  "Mbps": 0.705,
+  "lossless": true,
+  "note": ""
+ },
+ {
+  "method": "delta16 + zstd L22",
+  "CR": 1.606,
+  "Mbps": 0.717,
+  "lossless": true,
+  "note": ""
+ },
+ {
+  "method": "hi8 + dlo8 + lzma L9",
+  "CR": 1.79,
+  "Mbps": 0.644,
+  "lossless": true,
+  "note": ""
+ },
+ {
+  "method": "时间交织布局 + zstd L19",
+  "CR": 1.294,
+  "Mbps": 0.89,
+  "lossless": true,
+  "note": ""
+ },
+ {
+  "method": "JPEG2000 无损 (5/3, j2k)",
+  "CR": 1.652,
+  "Mbps": 0.697,
+  "lossless": true,
+  "note": "5s"
+ },
+ {
+  "method": "HTJ2K 无损",
+  "CR": 1.554,
+  "Mbps": 0.741,
+  "lossless": true,
+  "note": "1s"
+ },
+ {
+  "method": "JPEG-XL 无损 (effort=7)",
+  "CR": 1.682,
+  "Mbps": 0.685,
+  "lossless": true,
+  "note": "6s"
+ },
+ {
+  "method": "PNG 16bit L9",
+  "CR": 1.335,
+  "Mbps": 0.863,
+  "lossless": true,
+  "note": "3s"
+ },
+ {
+  "method": "ZFP 默认 (f32)",
+  "CR": 1.259,
+  "Mbps": 0.915,
+  "lossless": true,
+  "note": ""
+ },
+ {
+  "method": "ZFP level=-2 (f32)",
+  "CR": 1.259,
+  "Mbps": 0.915,
+  "lossless": null,
+  "note": "worst|err|=0 RMSE=0.00"
+ },
+ {
+  "method": "ZFP level=-4 (f32)",
+  "CR": 1.259,
+  "Mbps": 0.915,
+  "lossless": null,
+  "note": "worst|err|=0 RMSE=0.00"
+ },
+ {
+  "method": "LERC level=0 (无损)",
+  "CR": 1.345,
+  "Mbps": 0.857,
+  "lossless": true,
+  "note": ""
+ },
+ {
+  "method": "E1 零系数邻道 残差+zstd L19",
+  "CR": 2.684,
+  "Mbps": 0.429,
+  "lossless": true,
+  "note": ""
+ },
+ {
+  "method": "E1 零系数邻道 残差+FLAC",
+  "CR": 2.187,
+  "Mbps": 0.527,
+  "lossless": true,
+  "note": ""
+ },
+ {
+  "method": "E2 双邻道平均 残差+zstd L19",
+  "CR": 1.745,
+  "Mbps": 0.66,
+  "lossless": false,
+  "note": ""
+ },
+ {
+  "method": "E2 双邻道平均 残差+FLAC",
+  "CR": 1.873,
+  "Mbps": 0.615,
+  "lossless": true,
+  "note": ""
+ },
+ {
+  "method": "E3 LS 单邻道 残差+zstd L19",
+  "CR": 1.778,
+  "Mbps": 0.648,
+  "lossless": false,
+  "note": ""
+ },
+ {
+  "method": "E3 LS 单邻道 残差+FLAC",
+  "CR": 2.227,
+  "Mbps": 0.517,
+  "lossless": true,
+  "note": ""
+ },
+ {
+  "method": "最优残差 + JPEG-LS NEAR=2",
+  "CR": 2.973,
+  "Mbps": 0.387,
+  "lossless": null,
+  "note": "残差域 err<=2µV"
+ }
+]

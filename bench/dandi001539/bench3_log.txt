@@ -1,0 +1,57 @@
+data: (48, 618512) int16, raw = 59.4 MB, 信号 std=708.9µV
+脑区映射 (NWB electrodes): [('OB', [30, 31, 32, 33, 34, 35, 36, 37]), ('CA1', [0, 1, 2, 3, 20, 21, 22, 23, 24, 25, 26, 27, 40, 41, 42, 43, 44, 45, 46, 47]), ('PFC', [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 28, 29, 38, 39])]
+3 根通道 [30, 0, 4], 最大链深 11
+
+---- T1 树形零系数单亲 ----
+  残差 std=424.7 max=24694
+T1 零系数单亲: 根FLAC+残差zstd(电极序)                      CR= 1.842x  0.625 Mbps  ok=True  
+T1 零系数单亲: 根原始+残差混排zstd                           CR= 1.754x  0.657 Mbps  ok=None  单流无根开销
+T1 零系数单亲: 根FLAC+残差FLAC                           CR= 1.992x  0.578 Mbps  ok=None  
+T1 零系数单亲: 根FLAC+残差drice                          CR= 1.949x  0.591 Mbps  ok=None  FPGA亲和
+T1 零系数单亲: 残差drice_nl NEAR=2                      CR= 1.953x  0.590 Mbps  ok=None  worst|err|=6µV RMSE=0.42
+T1 零系数单亲: 残差drice_nl NEAR=4                      CR= 1.959x  0.588 Mbps  ok=None  worst|err|=16µV RMSE=1.02
+T1 零系数单亲: 残差JPEG-LS NEAR=2                       CR= 2.582x  0.446 Mbps  ok=None  worst|err|=20µV RMSE=3.20
+T1 零系数单亲: 残差JPEG-LS NEAR=4                       CR= 2.922x  0.394 Mbps  ok=None  worst|err|=38µV RMSE=5.75
+
+---- T1d 残差再时域差分 ----
+T1d 残差时域差分+zstd                                  CR= 1.943x  0.593 Mbps  ok=None  
+
+---- T4 DAG 双亲零系数平均 ----
+  残差 std=438.9 max=24694
+T4 双亲平均: 根FLAC+残差zstd                            CR= 1.610x  0.715 Mbps  ok=True  
+T4 双亲平均: 根FLAC+残差FLAC                            CR= 1.857x  0.620 Mbps  ok=None  
+
+---- T5 DAG 双亲最小二乘 ----
+  残差 std=358.9 max=24412
+T5 双亲LS: 根FLAC+残差zstd                            CR= 1.602x  0.719 Mbps  ok=None  系数需定点化
+T5 双亲LS: 根FLAC+残差FLAC                            CR= 2.041x  0.565 Mbps  ok=None  
+
+---- FLAC 立体声配对 (joint stereo) ----
+FLAC 立体声配对 (23对+2单)                              CR= 1.990x  0.579 Mbps  ok=True  零自研代码
+
+---- SZ3 / AEC ----
+SZ3 无损 (f32中转)                                   CR= 1.040x  1.108 Mbps  ok=True  
+SZ3 abs=2µV                                      CR= 1.973x  0.584 Mbps  ok=None  worst|err|=2 RMSE=1.15
+SZ3 abs=4µV                                      CR= 2.252x  0.512 Mbps  ok=None  worst|err|=4 RMSE=2.31
+AEC/CCSDS-121 (raw)                              CR= 1.594x  0.723 Mbps  ok=True  航天标准
+
+==== bench3 汇总 (排序) ====
+T1 零系数单亲: 残差JPEG-LS NEAR=4                       CR= 2.922x  0.394 Mbps  ok=None  worst|err|=38µV RMSE=5.75
+T1 零系数单亲: 残差JPEG-LS NEAR=2                       CR= 2.582x  0.446 Mbps  ok=None  worst|err|=20µV RMSE=3.20
+SZ3 abs=4µV                                      CR= 2.252x  0.512 Mbps  ok=None  worst|err|=4 RMSE=2.31
+T5 双亲LS: 根FLAC+残差FLAC                            CR= 2.041x  0.565 Mbps  ok=None  
+T1 零系数单亲: 根FLAC+残差FLAC                           CR= 1.992x  0.578 Mbps  ok=None  
+FLAC 立体声配对 (23对+2单)                              CR= 1.990x  0.579 Mbps  ok=True  零自研代码
+SZ3 abs=2µV                                      CR= 1.973x  0.584 Mbps  ok=None  worst|err|=2 RMSE=1.15
+T1 零系数单亲: 残差drice_nl NEAR=4                      CR= 1.959x  0.588 Mbps  ok=None  worst|err|=16µV RMSE=1.02
+T1 零系数单亲: 残差drice_nl NEAR=2                      CR= 1.953x  0.590 Mbps  ok=None  worst|err|=6µV RMSE=0.42
+T1 零系数单亲: 根FLAC+残差drice                          CR= 1.949x  0.591 Mbps  ok=None  FPGA亲和
+T1d 残差时域差分+zstd                                  CR= 1.943x  0.593 Mbps  ok=None  
+T4 双亲平均: 根FLAC+残差FLAC                            CR= 1.857x  0.620 Mbps  ok=None  
+T1 零系数单亲: 根FLAC+残差zstd(电极序)                      CR= 1.842x  0.625 Mbps  ok=True  
+T1 零系数单亲: 根原始+残差混排zstd                           CR= 1.754x  0.657 Mbps  ok=None  单流无根开销
+T4 双亲平均: 根FLAC+残差zstd                            CR= 1.610x  0.715 Mbps  ok=True  
+T5 双亲LS: 根FLAC+残差zstd                            CR= 1.602x  0.719 Mbps  ok=None  系数需定点化
+AEC/CCSDS-121 (raw)                              CR= 1.594x  0.723 Mbps  ok=True  航天标准
+SZ3 无损 (f32中转)                                   CR= 1.040x  1.108 Mbps  ok=True  
+saved bench3_results.json

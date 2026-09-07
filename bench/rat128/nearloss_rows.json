@@ -1,0 +1,65 @@
+[
+ {
+  "policy": "P0 全局NEAR=0",
+  "CR": 2.27,
+  "Mbps": 27.06,
+  "bits/sample": 7.047,
+  "note": "err<=0LSB"
+ },
+ {
+  "policy": "P0 全局NEAR=1",
+  "CR": 2.94,
+  "Mbps": 20.9,
+  "bits/sample": 5.442,
+  "note": "err<=1LSB"
+ },
+ {
+  "policy": "P0 全局NEAR=2",
+  "CR": 3.395,
+  "Mbps": 18.1,
+  "bits/sample": 4.713,
+  "note": "err<=2LSB"
+ },
+ {
+  "policy": "P0 全局NEAR=4",
+  "CR": 4.114,
+  "Mbps": 14.93,
+  "bits/sample": 3.889,
+  "note": "err<=4LSB"
+ },
+ {
+  "policy": "P0 全局NEAR=8",
+  "CR": 5.291,
+  "Mbps": 11.61,
+  "bits/sample": 3.024,
+  "note": "err<=8LSB"
+ },
+ {
+  "policy": "P1 噪声自适应NEAR~sig/4",
+  "CR": 4.399,
+  "Mbps": 13.97,
+  "bits/sample": 3.637,
+  "note": "NEAR_c 3/5/8"
+ },
+ {
+  "policy": "P1 噪声自适应NEAR~sig/2",
+  "CR": 5.759,
+  "Mbps": 10.67,
+  "bits/sample": 2.778,
+  "note": "NEAR_c 5/10/15"
+ },
+ {
+  "policy": "P2 spike感知(thr=7xMAD,活动NEAR=1,背景~sig/4)",
+  "CR": 4.055,
+  "Mbps": 15.15,
+  "bits/sample": 3.945,
+  "note": "活动块 5.52%"
+ },
+ {
+  "policy": "P2 spike感知(thr=7xMAD,活动NEAR=1,背景~sig/2)",
+  "CR": 5.103,
+  "Mbps": 12.04,
+  "bits/sample": 3.135,
+  "note": "活动块 5.52%"
+ }
+]

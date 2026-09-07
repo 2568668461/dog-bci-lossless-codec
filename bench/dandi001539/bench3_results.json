@@ -1,0 +1,128 @@
+[
+ {
+  "method": "T1 零系数单亲: 根FLAC+残差zstd(电极序)",
+  "CR": 1.842,
+  "Mbps": 0.625,
+  "lossless": true,
+  "note": ""
+ },
+ {
+  "method": "T1 零系数单亲: 根原始+残差混排zstd",
+  "CR": 1.754,
+  "Mbps": 0.657,
+  "lossless": null,
+  "note": "单流无根开销"
+ },
+ {
+  "method": "T1 零系数单亲: 根FLAC+残差FLAC",
+  "CR": 1.992,
+  "Mbps": 0.578,
+  "lossless": null,
+  "note": ""
+ },
+ {
+  "method": "T1 零系数单亲: 根FLAC+残差drice",
+  "CR": 1.949,
+  "Mbps": 0.591,
+  "lossless": null,
+  "note": "FPGA亲和"
+ },
+ {
+  "method": "T1 零系数单亲: 残差drice_nl NEAR=2",
+  "CR": 1.953,
+  "Mbps": 0.59,
+  "lossless": null,
+  "note": "worst|err|=6µV RMSE=0.42"
+ },
+ {
+  "method": "T1 零系数单亲: 残差drice_nl NEAR=4",
+  "CR": 1.959,
+  "Mbps": 0.588,
+  "lossless": null,
+  "note": "worst|err|=16µV RMSE=1.02"
+ },
+ {
+  "method": "T1 零系数单亲: 残差JPEG-LS NEAR=2",
+  "CR": 2.582,
+  "Mbps": 0.446,
+  "lossless": null,
+  "note": "worst|err|=20µV RMSE=3.20"
+ },
+ {
+  "method": "T1 零系数单亲: 残差JPEG-LS NEAR=4",
+  "CR": 2.922,
+  "Mbps": 0.394,
+  "lossless": null,
+  "note": "worst|err|=38µV RMSE=5.75"
+ },
+ {
+  "method": "T1d 残差时域差分+zstd",
+  "CR": 1.943,
+  "Mbps": 0.593,
+  "lossless": null,
+  "note": ""
+ },
+ {
+  "method": "T4 双亲平均: 根FLAC+残差zstd",
+  "CR": 1.61,
+  "Mbps": 0.715,
+  "lossless": true,
+  "note": ""
+ },
+ {
+  "method": "T4 双亲平均: 根FLAC+残差FLAC",
+  "CR": 1.857,
+  "Mbps": 0.62,
+  "lossless": null,
+  "note": ""
+ },
+ {
+  "method": "T5 双亲LS: 根FLAC+残差zstd",
+  "CR": 1.602,
+  "Mbps": 0.719,
+  "lossless": null,
+  "note": "系数需定点化"
+ },
+ {
+  "method": "T5 双亲LS: 根FLAC+残差FLAC",
+  "CR": 2.041,
+  "Mbps": 0.565,
+  "lossless": null,
+  "note": ""
+ },
+ {
+  "method": "FLAC 立体声配对 (23对+2单)",
+  "CR": 1.99,
+  "Mbps": 0.579,
+  "lossless": true,
+  "note": "零自研代码"
+ },
+ {
+  "method": "SZ3 无损 (f32中转)",
+  "CR": 1.04,
+  "Mbps": 1.108,
+  "lossless": true,
+  "note": ""
+ },
+ {
+  "method": "SZ3 abs=2µV",
+  "CR": 1.973,
+  "Mbps": 0.584,
+  "lossless": null,
+  "note": "worst|err|=2 RMSE=1.15"
+ },
+ {
+  "method": "SZ3 abs=4µV",
+  "CR": 2.252,
+  "Mbps": 0.512,
+  "lossless": null,
+  "note": "worst|err|=4 RMSE=2.31"
+ },
+ {
+  "method": "AEC/CCSDS-121 (raw)",
+  "CR": 1.594,
+  "Mbps": 0.723,
+  "lossless": true,
+  "note": "航天标准"
+ }
+]

@@ -1,5 +1,24 @@
+# 编译产物
 *.exe
 *.o
 *.bw
 *.wav
 __pycache__/
+
+# 测试数据 / 中间产物（大文件一律不入库）
+*.bin
+*.back
+*.out
+*.raw
+*.nwb
+*.rhd
+*.npz.tmp
+vendor/
+vendor_*/
+_tmp/
+_tmp*/
+flac_out*/
+
+# 例外：小体积统计结果允许入库
+!bench/rat128/nearloss_stats.npz
+!bench/rat128/nearloss_rows.json

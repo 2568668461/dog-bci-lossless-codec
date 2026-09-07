@@ -1,0 +1,71 @@
+data: (48, 618512) int16, raw = 59.4 MB, 原生码率 1.152 Mbps
+
+(A 段已跑过, 跳过 —— 结果沿用 bench2_log 上次运行)
+
+---- B. 16bit 图像类 (每通道 604x1024 块) ----
+JPEG2000 无损 (5/3, j2k)                     CR= 1.652x  0.697 Mbps   9.683 bits/s  ok=True  5s
+HTJ2K 无损                                   CR= 1.554x  0.741 Mbps  10.296 bits/s  ok=True  1s
+JPEG-XL 无损 (effort=7)                      CR= 1.682x  0.685 Mbps   9.511 bits/s  ok=True  6s
+PNG 16bit L9                               CR= 1.335x  0.863 Mbps  11.988 bits/s  ok=True  3s
+AVIF 尝试 16bit ch0 ERR AvifError("avifEncoderAddImage returned 'Unsupported depth'")
+
+---- C. 科学数据压缩器 (SZ3/ZFP/LERC) ----
+SZ3 default ERR TypeError('sz3_decode() takes exactly 3 positional arguments (1 given)')
+SZ3 abs2 ERR TypeError('sz3_decode() takes exactly 3 positional arguments (1 given)')
+SZ3 abs4 ERR TypeError('sz3_decode() takes exactly 3 positional arguments (1 given)')
+  [3s]
+ZFP 默认 (f32)                               CR= 1.259x  0.915 Mbps  12.704 bits/s  ok=True  
+ZFP level=-2 (f32)                         CR= 1.259x  0.915 Mbps  12.704 bits/s  ok=None  worst|err|=0 RMSE=0.00
+ZFP level=-4 (f32)                         CR= 1.259x  0.915 Mbps  12.704 bits/s  ok=None  worst|err|=0 RMSE=0.00
+  [4s]
+LERC level=0 (无损)                          CR= 1.345x  0.857 Mbps  11.900 bits/s  ok=True  
+  [1s]
+
+---- D. 航天标准 AEC / CCSDS-121 ----
+AEC raw ERR AecError('aec_decode returned AEC_DATA_ERROR')
+AEC delta ERR AecError('aec_decode returned AEC_DATA_ERROR')
+  [1s]
+
+---- E. 自研跨通道预测 ----
+分脑区相邻相关系数(排序后前5):
+  OB   top5: [0.862 0.856 0.843 0.818 0.807]
+  CA1  top5: [0.929 0.917 0.888 0.877 0.872]
+  PFC  top5: [1.    1.    1.    1.    0.934]
+E1 零系数邻道差分 (r = x_i - x_j):
+  残差统计: 全局 std=336.4 max|r|=5354
+E1 零系数邻道 残差+zstd L19                       CR= 2.684x  0.429 Mbps   5.961 bits/s  ok=True  
+E1 零系数邻道 残差+FLAC                           CR= 2.187x  0.527 Mbps   7.316 bits/s  ok=True  
+E2 双邻道平均 (r = x_i - (x_j1+x_j2)/2):
+  残差统计: 全局 std=364.9 max|r|=12347
+E2 双邻道平均 残差+zstd L19                       CR= 1.745x  0.660 Mbps   9.169 bits/s  ok=False  
+E2 双邻道平均 残差+FLAC                           CR= 1.873x  0.615 Mbps   8.543 bits/s  ok=True  
+E3 最小二乘单邻道 (r = x_i - round(a*x_j+b)):
+  残差统计: 全局 std=297.9 max|r|=4919
+E3 LS 单邻道 残差+zstd L19                      CR= 1.778x  0.648 Mbps   8.999 bits/s  ok=False  
+E3 LS 单邻道 残差+FLAC                          CR= 2.227x  0.517 Mbps   7.186 bits/s  ok=True  
+最优残差 + JPEG-LS NEAR=2                      CR= 2.973x  0.387 Mbps   5.381 bits/s  ok=None  残差域 err<=2µV
+
+==== bench2 汇总 (排序) ====
+最优残差 + JPEG-LS NEAR=2                      CR= 2.973x  0.387 Mbps  ok=None  残差域 err<=2µV
+E1 零系数邻道 残差+zstd L19                       CR= 2.684x  0.429 Mbps  ok=True  
+E3 LS 单邻道 残差+FLAC                          CR= 2.227x  0.517 Mbps  ok=True  
+E1 零系数邻道 残差+FLAC                           CR= 2.187x  0.527 Mbps  ok=True  
+E2 双邻道平均 残差+FLAC                           CR= 1.873x  0.615 Mbps  ok=True  
+hi8 + dlo8 + lzma L9                       CR= 1.790x  0.644 Mbps  ok=True  
+delta16 + lzma L9                          CR= 1.784x  0.646 Mbps  ok=True  
+E3 LS 单邻道 残差+zstd L19                      CR= 1.778x  0.648 Mbps  ok=False  
+E2 双邻道平均 残差+zstd L19                       CR= 1.745x  0.660 Mbps  ok=False  
+JPEG-XL 无损 (effort=7)                      CR= 1.682x  0.685 Mbps  ok=True  6s
+lzma/xz L9 (raw)                           CR= 1.663x  0.693 Mbps  ok=None  
+JPEG2000 无损 (5/3, j2k)                     CR= 1.652x  0.697 Mbps  ok=True  5s
+delta16 + brotli Q9                        CR= 1.634x  0.705 Mbps  ok=True  
+delta16 + zstd L22                         CR= 1.606x  0.717 Mbps  ok=True  
+HTJ2K 无损                                   CR= 1.554x  0.741 Mbps  ok=True  1s
+brotli Q9 (raw)                            CR= 1.426x  0.808 Mbps  ok=None  
+LERC level=0 (无损)                          CR= 1.345x  0.857 Mbps  ok=True  
+PNG 16bit L9                               CR= 1.335x  0.863 Mbps  ok=True  3s
+时间交织布局 + zstd L19                          CR= 1.294x  0.890 Mbps  ok=True  
+ZFP 默认 (f32)                               CR= 1.259x  0.915 Mbps  ok=True  
+ZFP level=-2 (f32)                         CR= 1.259x  0.915 Mbps  ok=None  worst|err|=0 RMSE=0.00
+ZFP level=-4 (f32)                         CR= 1.259x  0.915 Mbps  ok=None  worst|err|=0 RMSE=0.00
+saved bench2_results.json
