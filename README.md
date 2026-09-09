@@ -43,6 +43,7 @@
 | [`rtl_demo/`](rtl_demo/) | 首个 RTL 演示核（Verilog）：帧捕获 → 1 阶差分 → 17bit zigzag → 固定 K Rice，含 Python 黄金模型与 Icarus 仿真对拍脚本（黄金模型自检已通过；RTL 仿真待安装 Icarus 后运行 `run_sim.py`） |
 | [`bench/`](bench/) | 两套真实数据基准测试脚本（rat128 / dandi001539），含全部实测结果 JSON 与日志 |
 | [`docs/`](docs/) | 测试报告（0906/0907）、数据集调研、EDA 图表、ZYNQ 移植规划 |
+| [`docs/papers/`](docs/papers/) + [`docs/文献阅读笔记/`](docs/文献阅读笔记/) | 参考文献 PDF 与阅读笔记（首篇：Nicolelis 2014 Nature Methods 无线大规模记录——本项目对标文献，含与压缩路线的对比分析） |
 | [`upstream/`](upstream/) | Neuralink 挑战赛原版代码（未改动） |
 
 ## 基准测试结论摘要（2026-09-06/07，两套真实在体数据）
