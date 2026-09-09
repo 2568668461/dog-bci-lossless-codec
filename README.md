@@ -40,6 +40,7 @@
 |---|---|
 | `encode16*.c` / `decode16*.c` | 16-bit 无损压缩器（Neuralink 改造版，见上） |
 | [`drice/`](drice/) | C 语言 drice（差分 Rice-Golomb）编解码器——FPGA 移植首选结构，每通道 1 个减法器 |
+| [`rtl_demo/`](rtl_demo/) | 首个 RTL 演示核（Verilog）：帧捕获 → 1 阶差分 → 17bit zigzag → 固定 K Rice，含 Python 黄金模型与 Icarus 仿真对拍脚本（黄金模型自检已通过；RTL 仿真待安装 Icarus 后运行 `run_sim.py`） |
 | [`bench/`](bench/) | 两套真实数据基准测试脚本（rat128 / dandi001539），含全部实测结果 JSON 与日志 |
 | [`docs/`](docs/) | 测试报告（0906/0907）、数据集调研、EDA 图表、ZYNQ 移植规划 |
 | [`upstream/`](upstream/) | Neuralink 挑战赛原版代码（未改动） |
